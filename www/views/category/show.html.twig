@@ -1,0 +1,26 @@
+{% extends "/layout/default.twig" %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block body %}
+<div class="container mb-5 mt-5">
+    <h2 class="display-5">{{ category.name }}</h2>
+</div>
+<div class="container mb-5 mt-5">
+    <div class="list-group">
+    {% for post in posts %}
+    <div class="list-group list-group-item list-group-item-action flex-column align-items-start" 
+        onclick='getModal("{{ post.name }}", "{{ post.content }}", "{{ post.createdAt }}",
+                            "{{ post.id }}", "{{ post.slug }}")';>
+        <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ post.name }}</h5>
+                <small>{{ post.createdAt | date('d/m/Y : H:i')}}</small>
+            </div>
+        <p class="mb-1">{{ post.content | slice(0, 50) }}...</p>
+    </div>
+{% endfor %}
+    </div>
+</div>
+
+{% include "/post/modal.html.twig" %}
+{% endblock %}

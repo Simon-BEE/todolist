@@ -1,0 +1,45 @@
+{% extends "/layout/default.twig" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block body %}
+<div class="container mb-5 mt-5">
+    <div class="jumbotron">
+        <h1 class="display-3">Hello, world!</h1>
+        <p class="lead">This proposal is a win-win situation which will cause a stellar paradigm shift, and produce a multi-fold increase in deliverables win-win-win, so i'll book a meeting so we can solution this before the sprint is over but take five, punch the tree, and come back in here with a clear head, yet going forward nor we don't want to boil the ocean the right info at the right time to the right people. Where do we stand on the latest client ask quarterly sales are at an all-time low are there any leftovers in the kitchen? Quick win i also believe it's important for every member to be involved and invested in our company and this is one way to do so horsehead offer net net. </p>
+        <hr class="my-4">
+        <p>Back-end of third quarter time to open the kimono we need a paradigm shift customer centric, but onward and upward, productize the deliverables and focus on the bottom line. Punter prairie dogging. Nail it down we need to have a Come to Jesus meeting with Phil about his attitude clear blue water, yet touch base. Paddle on both sides. Prioritize these line items best practices i’ve been doing some research this morning and we need to better out of scope hit the ground running.</p>
+    </div>
+</div>
+
+<div class="container mb-5 mt-5">
+    <div class="row">
+        <div class="offset-3 col-3">
+            <p><a href="{{ uri('post_add') }}" class="btn btn-primary">Ajouter un article</a></p>
+        </div>
+        <div class="offset-1 col-3">
+            <p><a href="{{ uri('category_add') }}" class="btn btn-primary">Ajouter une catégorie</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5 mt-5">
+    <div class="list-group">
+    {% for post in posts %}
+    <div class="list-group list-group-item list-group-item-action flex-column align-items-start" 
+        onclick='getModal("{{ post.name }}", "{{ post.content }}", "{{ post.createdAt }}",
+                            "{{ post.id }}", "{{ post.slug }}")';>
+        <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ post.name }}</h5>
+                <small>{{ post.createdAt | date('d/m/Y : H:i')}}</small>
+            </div>
+        <p class="mb-1">{{ post.content | slice(0, 50) }}...</p>
+        <small>{{ post.category.name }}</small>
+    </div>
+{% endfor %}
+    </div>
+</div>
+
+{% include "/post/modal.html.twig" %}
+
+{% endblock %}

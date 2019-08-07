@@ -1,0 +1,49 @@
+{% extends "/layout/default.twig" %}
+
+{% block title %}ToDoList{% endblock %}
+
+{% block body %}
+<div class="container mb-5 mt-5">
+    <h2 class="display-5">Qu'est-ce qu'il y a à faire ?</h2>
+</div>
+
+<div class="container mb-5 mt-5">
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="task">Une nouvelle tâche à effectuer ?</label>
+            <div class="row">
+                <div class="col-10">
+                    <input type="text" class="form-control" name="name" id="task">
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-primary" onclick="newTask()">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container mb-5 mt-5">
+    <ul class="" id="list">
+        {% for task in tasks %}
+            <li class="" id="li{{ task.id }}">
+                {% if task.doneAt %}
+                    <p><i class="fas fa-check text-success"></i></p>
+                {% else %}
+                    <p class='' id="checked{{ task.id }}"><i class="fas fa-times text-danger"></i></p>
+                    
+                {% endif %}
+                <p id="name{{ task.id }}">{{ task.name }}</p>
+                <div class="">
+                    {% if not task.doneAt %}
+                    <button type="button" class="bouton green" id="btn{{task.id}}" onclick="taskCheck({{ task.id }})"><i class="far fa-check-circle text-white"></i></button>
+                        <button type="button" id="edit{{ task.id }}" class="bouton blue" onclick="showEditModal({{ task.id }})"><i class="fas fa-pencil-alt text-white"></i></button>
+                    {% endif %}
+                    <button type="button" class="bouton red" onclick="deleteTask({{ task.id }})"><i class="far fa-trash-alt text-white"></i></button>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% include "/task/modal.html.twig" %}
+{% endblock %}

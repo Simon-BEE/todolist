@@ -1,0 +1,76 @@
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+
+/* TODOLIST */
+#list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  margin-right: 13%;
+}
+
+#list li {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  width: 800px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fafafa;
+  text-align: left;
+  border-radius: 10px;
+}
+
+#list li div {
+  display: flex;
+}
+
+#list li div > * {
+  margin-left: 10px;
+}
+
+.bouton{
+  border: none;
+  border-radius: 35%;
+  padding: 2px 8px !important;
+}
+
+.bouton.red{
+  background-color: #d84641;
+}
+
+.bouton.blue{
+  background-color: #16375d;
+}
+
+.bouton.green{
+  background-color: #165d2b;
+}
+
+.bouton.red:hover{
+  background-color: #f65e58;
+}
+
+.bouton.blue:hover{
+  background-color: #1e4879;
+}
+
+.bouton.green:hover{
+  background-color: #238f43;
+}
+
+ul p {
+  line-height: 30px;
+}
+
+/* -------- */

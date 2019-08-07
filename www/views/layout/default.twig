@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='fr'>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="https://bootswatch.com/4/sandstone/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/styles/styles.css">
+	<title>TestWebSite :: {% block title %}{% endblock %}</title>
+	<script src="https://kit.fontawesome.com/d399a29ef2.js"></script>
+</head>
+
+<body>
+	<header class="menu">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="{{ uri('home') }}">TestWEBSITE</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarColor03">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ uri('home') }}">Homepage</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ uri('todolist') }}">ToDoList</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<main class="body">
+		{% for success in flash("success") %}
+		<div class="alert alert-success text-center col-4 offset-4 mt-2" role="alert">
+			{{ success }}
+		</div>
+		{% endfor %}
+		{% for errors in flash("alert") %}
+		<div class="alert alert-danger text-center col-4 offset-4 mt-2" role="alert">
+			{{ errors }}
+		</div>
+		{% endfor %}
+
+
+		{% block body %}
+		
+		{% endblock %}
+	</main>
+	<footer>
+		<nav class="vh-10 navbar navbar-expand-lg navbar-dark bg-primary">
+			<div class="collapse navbar-collapse" id="navbarColor01">
+				<p class="text-white">Test WEBSITE !! 2019</p>
+			</div>
+		</nav>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script src="https://js.stripe.com/v3/"></script>
+	{% block script %}{% endblock %}
+	<script type="text/javascript" src="/assets/js/script.js"></script>
+</body>
+
+</html>

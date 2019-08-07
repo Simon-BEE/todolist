@@ -1,0 +1,42 @@
+{% extends "/layout/default.twig" %}
+
+{% block title %}{% if post %}Editer{% else %}Ajouter{% endif %} un article{% endblock %}
+
+{% block body %}
+<div class="container mb-5 mt-5">
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="name">Titre de l'article</label>
+            <input type="text" name="name" id="name"class="form-control" value="{{ post.name }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Contenu de l'article</label>
+            <textarea name="content" id="content" cols="30" rows="10" class="form-control" required>{{ post.content }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <select name="category_id" class="custom-select" required>
+                {% if post %}
+                    <option value="{{ post.categoryId }}" selected>{{ post.category.name }}</option>
+                    {% for category in categories %}
+                        {% if post.categoryId != category.id %}
+                            <option value="{{ category.id }}" name="category_id">{{ category.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <option value="" selected>Choisissez une catégorie</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}" name="category_id">{{ category.name }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+        </div>
+        {% if categories %}
+            <div class="form-group"><button class="btn btn-primary">{% if post %}Editer{% else %}Ajouter{% endif %}</button></div>
+        {% else %}
+            <p class="text-danger">Veuillez <a href="{{ uri('category_add') }}" class="text-danger font-weight-bold">ajouter une catégorie</a> avant de poster !</p>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

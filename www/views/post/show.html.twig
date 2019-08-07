@@ -1,0 +1,23 @@
+{% extends "/layout/default.twig" %}
+
+{% block title %}{{ post.name }}{% endblock %}
+
+{% block body %}
+<div class="container mb-5 mt-5">
+    <div class="mb-2 d-flex justify-content-between">
+        <h2>{{ post.name }}</h2>
+        <div>
+            <a href="{{ uri('post_edit', {'id': post.id, 'slug': post.slug}) }}" class="btn btn-info"><i class="fas fa-pencil-alt text-white"></i></a>
+            <a href="{{ uri('post_delete', {'id': post.id, 'slug': post.slug}) }}" class="btn btn-danger"><i class="fas fa-trash-alt text-white"></i></a>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between mb-5">
+        <small class="text-secondary">{{ post.createdAt | date('d/m/Y : H:i') }}</small>
+        <small class="text-info"><a href="{{ uri('category_show', {'id': post.category.id, 'slug': post.category.slug }) }}">{{ post.category.name }}</a></small>
+    </div>
+    <div>
+        <p>{{ post.content }}</p>
+    </div>
+    
+</div>
+{% endblock %}
